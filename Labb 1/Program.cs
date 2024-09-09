@@ -21,7 +21,7 @@ for (int i = 0; i < userString.Length; i++)
             Console.WriteLine(userString[j]);
         }
     }
-
+     
     //foreach (var number in userString)
     //{
 
