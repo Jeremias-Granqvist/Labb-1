@@ -17,10 +17,10 @@ for (int i = 0; i < userString.Length; i++)
             int parseLength = Math.Abs(i - j);
             string userSubString = userString.Substring(i, parseLength + 1);
             Int128 savedNumForResult;
-            bool parseString = Int128.TryParse(userSubString, out savedNumForResult);
+            bool isParseStringInt = Int128.TryParse(userSubString, out savedNumForResult);
             result = savedNumForResult + result;
             
-            if (parseString == true)
+            if (isParseStringInt == true)
             {
                 for (int k = 0; k < userString.Length; k++)
                 {
@@ -39,7 +39,7 @@ for (int i = 0; i < userString.Length; i++)
                 Console.WriteLine();
                 break;
             }
-            else if (parseString == false)
+            else if (isParseStringInt == false)
             {
                 continue;
             }
