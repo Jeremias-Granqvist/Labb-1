@@ -1,55 +1,60 @@
-﻿//För varje sådan delsträng som matchar kriteriet ovan ska programmet skriva ut en
-//rad med hela strängen, men där delsträngen är markerad i en annan färg.
+﻿//29535123p48723487597645723645 teststräng
 
-
-//29535123p48723487597645723645
-
-
-string userString = "29535123p48723487597645723645";
-
-char tempChar;
-bool colour = false;
+using System.Diagnostics;
+Console.Write("Vänligen skriv in din sträng med siffror och bokstäver.");
+string userString = Console.ReadLine();
+Int128 result = 0;
+char firstChar;
 
 for (int i = 0; i < userString.Length; i++)
 {
-    for (int j = 1; j < userString.Length; j++)
-    {
-        tempChar = userString[i];
+    firstChar = userString[i];
 
-        if (tempChar == userString[j])
+    for (int j = i + 1; j < userString.Length; j++)
+    {
+
+        char jChar = userString[j];
+
+        if (firstChar == userString[j])
         {
-            Console.WriteLine(userString[j]);
+            int parseLength = Math.Abs(i - j);
+            string userSubString = userString.Substring(i, parseLength + 1);
+            Int128 middleNum;
+            bool parseString = Int128.TryParse(userSubString, out middleNum);
+            result = middleNum + result;
+            if (parseString == true)
+            {
+                Debug.WriteLine(middleNum);
+                for (int k = 0; k < userString.Length; k++)
+                {
+                    if (k >= i || k <= j)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    }
+                    if (k < i || k > j)
+                    {
+                        Console.ForegroundColor = ConsoleColor.White;
+                    }
+                    Console.Write(userString[k]);
+                }
+
+                Console.ResetColor();
+                Console.WriteLine();
+                break;
+            }
+            else if (parseString == false)
+            {
+                continue;
+            }
+
+        }
+        else
+        {
+            continue;
         }
     }
-     
-    //foreach (var number in userString)
-    //{
 
-    //    tempChar = userString[i];
-
-    //    if (number == tempChar)
-    //    {
-    //        colour = !colour;
-    //    }
-    //    if (number == tempChar && colour)
-    //    {
-    //        Console.ForegroundColor = ConsoleColor.Red;
-    //    }
-    //    Console.Write(number);
-    //    if (number == tempChar && !colour)
-    //    {
-    //        Console.ForegroundColor = ConsoleColor.White;
-    //    }
-    //}
-    Console.WriteLine();
-    colour = false;
 }
 
-
-
-
-//Programmet ska också addera ihop alla tal den hittat enligt ovan och skriva ut det
-//sist i programmet. Gör gärna en tom rad emellan för att skilja från output ovan.
-//Exempel output för input ”29535123p48723487597645723645”:
-//Total = 5836428677242
-
+Console.WriteLine();
+Console.WriteLine(result);
