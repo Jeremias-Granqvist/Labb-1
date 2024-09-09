@@ -1,7 +1,7 @@
 ﻿//29535123p48723487597645723645 teststräng
 
 using System.Diagnostics;
-Console.Write("Vänligen skriv in din sträng med siffror och bokstäver.");
+Console.Write("Vänligen skriv in din sträng med siffror och bokstäver: ");
 string userString = Console.ReadLine();
 Int128 result = 0;
 char firstChar;
