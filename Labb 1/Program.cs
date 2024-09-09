@@ -12,19 +12,16 @@ for (int i = 0; i < userString.Length; i++)
 
     for (int j = i + 1; j < userString.Length; j++)
     {
-
-        char jChar = userString[j];
-
         if (firstChar == userString[j])
         {
             int parseLength = Math.Abs(i - j);
             string userSubString = userString.Substring(i, parseLength + 1);
-            Int128 middleNum;
-            bool parseString = Int128.TryParse(userSubString, out middleNum);
-            result = middleNum + result;
+            Int128 savedNumForResult;
+            bool parseString = Int128.TryParse(userSubString, out savedNumForResult);
+            result = savedNumForResult + result;
+            
             if (parseString == true)
             {
-                Debug.WriteLine(middleNum);
                 for (int k = 0; k < userString.Length; k++)
                 {
                     if (k >= i || k <= j)
@@ -46,14 +43,12 @@ for (int i = 0; i < userString.Length; i++)
             {
                 continue;
             }
-
         }
         else
         {
             continue;
         }
     }
-
 }
 
 Console.WriteLine();
